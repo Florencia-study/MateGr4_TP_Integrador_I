@@ -31,6 +31,8 @@ def binario_a_decimal(binario):
         return numero_decimal
     else: 
          print("El número ingresado es inválido. Por favor, ingrese un número binario -conformado por ceros y unos")
+         binario = input()
+         binario_a_decimal(binario)
 #esta es una función para pasar de decimal a binario, opcionalmente se puede hacer sacando el % (modulo) y guardar el resto.
 def decimal_a_binario(decimal):
     decimal = int(decimal) #convertimos el número a entero, por si el usuario ingresa un número decimal. La funcion bin() no acepta string, por eso lo convertimos a entero.
@@ -84,7 +86,7 @@ def menu():
         num_decimal = input("Ingrese un número decimal:")
         decimal_a_binario(num_decimal)
     elif opcionMain == CORTE:
-        print("Gracias por utilizar el conversor. Muchas gracias.")
+        print("Programa finalizado. Muchas gracias por utilizar el conversor.")
     else:
         print("Opcion invalida, intente nuevamente.")
 menu()
