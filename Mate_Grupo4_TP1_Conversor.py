@@ -21,24 +21,50 @@ CORTE = "*"
 
 
 # creamos una funcion para pasar de binario, a decimal, y luego la llamamos dentro del ciclo.
-def binario_a_decimal(binario):
+def binario_a_decimal():
     #La función int(numerobinario,2) convierte el número binario a decimal.
     #El segundo parámetro indica la base del número que se está convirtiendo.
- 
-    if all(char in '01' for char in binario): #Est. condicional para validar que se ingresó realmente un número binario. 
-        numero_decimal = int(binario, 2)
-        print (f"El número binario {binario} equivale a {numero_decimal} en sistema decimal.")
-        return numero_decimal
-    else: 
+    #binario = ""
+    ###
+    #USAMOS WHILE TRUE PARA MANTENER EL CICLO CONSTANTE HASTA QUE SE CORTE
+    # utilizando While e if adentro se Agregó la logica de seguir convirtiendo numeros continuamente hasta que se presione CORTE
+    while True:
+        
+        binario = input("Ingrese un número binario -formado por ceros y unos: ")
+        if binario == CORTE:
+            print("vuelve al menu principal")
+            # no hace falta llamar al menu utilizando unicamente return
+            return 
+        elif all(char in '01' for char in binario): #Est. condicional para validar que se ingresó realmente un número binario. 
+            numero_decimal = int(binario, 2)
+            print (f"El número binario {binario} equivale a {numero_decimal} en sistema decimal.")
+            print(f"Escriba {CORTE} para volver al menú principal")
+            #return numero_decimal
+        else: 
          print("El número ingresado es inválido. Por favor, ingrese un número binario -conformado por ceros y unos")
+         print(f"Escriba {CORTE} para volver al menú principal")
+
+         #binario = input()
+         #binario_a_decimal(binario)
 #esta es una función para pasar de decimal a binario, opcionalmente se puede hacer sacando el % (modulo) y guardar el resto.
-def decimal_a_binario(decimal):
-    decimal = int(decimal) #convertimos el número a entero, por si el usuario ingresa un número decimal. La funcion bin() no acepta string, por eso lo convertimos a entero.
-    #La función bin(decimal) convierte el número decimal a binario.
-    numero_binario = bin(decimal)[2:] #el [2:] es para quitar el prefijo '0b' que indica que es un número binario.
-    #Se agregaron los numeros a ingresados por el usuario.
-    print (f"El número decimal {decimal} equivale a {numero_binario} en sistema binario.")
-    return numero_binario
+def decimal_a_binario():
+    while True:
+        decimal = input("Ingrese un número decimal:")
+        if decimal == CORTE:
+            print("vuelve al menu principal")
+            return
+        elif decimal != CORTE:
+            decimal = int(decimal) #convertimos el número a entero, por si el usuario ingresa un número decimal. La funcion bin() no acepta string, por eso lo convertimos a entero.
+            #La función bin(decimal) convierte el número decimal a binario.
+            numero_binario = bin(decimal)[2:] #el [2:] es para quitar el prefijo '0b' que indica que es un número binario.
+            #Se agregaron los numeros a ingresados por el usuario.
+            print (f"El número decimal {decimal} equivale a {numero_binario} en sistema binario.")
+            print(f"Escriba {CORTE} para volver al menú principal")
+
+            #return numero_binario
+        else:
+            print("El número ingresado es inválido. Por favor, ingrese un número binario -conformado por ceros y unos")
+            print(f"Escriba {CORTE} para volver al menú principal")
 
 #ciclo While para permitir al usuario pedir la conversion de todos los numeros que quiera, hasta que presione un *
 # Esta logica está siendo reutilizada dentro de cada funcion para convertir.
@@ -65,7 +91,7 @@ def decimal_a_binario(decimal):
 # # Yo creo que el otro está bien, podemos explicar de dónde lo sacamos, por ahi de gpt o copilot o documentacion.
 
 #MENU PRINCIPAL CON OPCIONES:
-CORTE = "*"
+#CORTE = "*"
 def menu():
  #Iniciamos opcionMain vacio para que se pueda ejecutar el while.   
  opcionMain = ""  
@@ -78,13 +104,15 @@ def menu():
     opcionMain = input("Ingrese su opción: ")
     # Ejecutamos la opcion seleccionada. No hace falta convertir los numeros asi que usamos strings.
     if opcionMain == "1":
-        binario = input("Ingrese un número binario -formado por ceros y unos: ")
-        binario_a_decimal(binario)
+       # binario = input("Ingrese un número binario -formado por ceros y unos: ")
+       #ejecutamos la funcion sin argumentos porque dentro se pide el input y se ejecuta el ciclo while
+        binario_a_decimal()
     elif opcionMain == "2":
-        num_decimal = input("Ingrese un número decimal:")
-        decimal_a_binario(num_decimal)
+        #misma logica agregada a opcion 2
+        #num_decimal = input("Ingrese un número decimal:")
+        decimal_a_binario()
     elif opcionMain == CORTE:
-        print("Gracias por utilizar el conversor. Muchas gracias.")
+        print("Programa finalizado. Muchas gracias por utilizar el conversor.")
     else:
         print("Opcion invalida, intente nuevamente.")
 menu()
